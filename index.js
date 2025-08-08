@@ -15,6 +15,10 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.get('/webhook', (req, res) => {
     const { 'hub.mode': mode, 'hub.challenge': challenge, 'hub.verify_token': token } = req.query;
     
