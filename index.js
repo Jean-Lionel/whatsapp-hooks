@@ -39,56 +39,32 @@ app.post('/webhook', (req, res) => {
     console.log(JSON.stringify(req.body, null, 2));
     
     let body_parms = req.body;
+    console.log(body_parms);
     
-    if (body_parms.object === 'whatsapp_business_account') {
-        if(body_parms.entry && body_parms.entry[0].changes[0].value.messages.length > 0) {
-            let message = body_parms.entry[0].changes[0].value.messages[0];
-            console.log('Message received:', message);
-            // contanc  
-        }
-        // contact
-        if(body_parms.entry && body_parms.entry[0].changes[0].value.contacts.length > 0) {
-            let contact = body_parms.entry[0].changes[0].value.contacts[0];
-            console.log('Contact received:', contact);
-        }
-        // phone id 
-        if(body_parms.entry && body_parms.entry[0].changes[0].value.phone_ids.length > 0) {
-            let phone_id = body_parms.entry[0].changes[0].value.phone_ids[0];
-            console.log('Phone ID received:', phone_id);
-        }
-        // business account 
-        if(body_parms.entry && body_parms.entry[0].changes[0].value.business_account.length > 0) {
-            let business_account = body_parms.entry[0].changes[0].value.business_account[0];
-            console.log('Business account received:', business_account);
-        }
-        // Message from
-        let phone_number_id = body_parms.entry[0].changes[0].value.phone_ids[0];
-        axios.post(
-            'https://graph.facebook.com/v22.0/'+phone_number_id+'/messages',
-            {
-                "messaging_product": "whatsapp",    
-                "recipient_type": "individual",
-                "to": "25779614036",
-                "type": "text",
-                "text": {
-                    "preview_url": false,
-                    "body": "Bonjour les amis je suis un Milliardaire"
-                }
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + accessToken
-                }
+    axios.post(
+        'https://graph.facebook.com/v22.0/778787758642253/messages',
+        {
+            "messaging_product": "whatsapp",    
+            "recipient_type": "individual",
+            "to": "25779614036",
+            "type": "text",
+            "text": {
+                "preview_url": false,
+                "body": "Bonjour les amis je suis un Milliardaire"
             }
-        )
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-        
-    }
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        }
+    )
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
     res.status(200).end();
 });
