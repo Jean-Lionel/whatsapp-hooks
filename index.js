@@ -33,38 +33,12 @@ app.get('/webhook', (req, res) => {
 });
 
 // Route for POST requests
-app.post('/webhook', (req, res) => {
+app.post('/webhook', async (req, res) => {
     const timestamp = new Date().toISOString().replace('T', ' ').slice(0, 19);
     console.log(`\n\nWebhook received ${timestamp}\n`);
     console.log(JSON.stringify(req.body, null, 2));
     
     let body_parms = req.body;
-    console.log(body_parms);
-    
-    axios.post(
-        'https://graph.facebook.com/v22.0/778787758642253/messages',
-        {
-            "messaging_product": "whatsapp",    
-            "recipient_type": "individual",
-            "to": "25779614036",
-            "type": "text",
-            "text": {
-                "preview_url": false,
-                "body": "Bonjour les amis je suis un Milliardaire"
-            }
-        },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + accessToken
-            }
-        }
-    )
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error(error);
-    });
+    //console.log(body_parms);
     res.status(200).end();
 });
