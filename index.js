@@ -16,12 +16,14 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    console.log('BONJOUR JEAN LIONEL NININAHAZWE !');
+    console.log(req.query);
+    res.send('BONJOUR JEAN LIONEL NININAHAZWE !');
 });
 
 app.get('/webhook', (req, res) => {
     const { 'hub.mode': mode, 'hub.challenge': challenge, 'hub.verify_token': token } = req.query;
-    
+    console.log(mode, challenge, token);
     if (mode === 'subscribe' && token === verifyToken) {
         console.log('WEBHOOK VERIFIED',challenge );
         res.status(200).send(challenge);
