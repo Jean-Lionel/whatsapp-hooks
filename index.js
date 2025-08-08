@@ -38,7 +38,5 @@ app.post('/webhook', async (req, res) => {
     console.log(`\n\nWebhook received ${timestamp}\n`);
     console.log(JSON.stringify(req.body, null, 2));
     
-    let body_parms = req.body;
-    //console.log(body_parms);
     res.status(200).end();
 });
