@@ -48,6 +48,8 @@ app.get('/webhook', async (req, res) => {
                 name: 'John Doe',
                 data: challenge
             });
+
+            console.log(response.data);
            // res.json(response.data); // retourne les données reçues à ton frontend
           } catch (error) {
             console.error(error.message);
@@ -65,7 +67,22 @@ app.post('/webhook', async (req, res) => {
     const timestamp = new Date().toISOString().replace('T', ' ').slice(0, 19);
     console.log(`\n\nWebhook received ${timestamp}\n`);
     console.log(JSON.stringify(req.body, null, 2));
-    console.log("\n--------------------BRUCE NDAMWERETSE--------------------------------\n")
+
+    try {
+            const response = await axios.post('https://api-whatsapp.advanceditb.com/api/webhook', {
+                name: 'John Doe',
+                data: challenge
+            });
+            console.log("=============CALLED API ===============");
+        console.log(response.data);
+        console.log("=============END API ===============");
+           // res.json(response.data); // retourne les données reçues à ton frontend
+          } catch (error) {
+            console.error(error.message);
+            res.status(500).json({ error: 'Erreur lors de la récupération des données' });
+        }
+        console.log("=============END API ===============");
+ 
     
     res.status(200).end();
 });
