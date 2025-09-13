@@ -71,7 +71,7 @@ app.post('/webhook', async (req, res) => {
     try {
             const response = await axios.post('https://api-whatsapp.advanceditb.com/api/webhook', {
                 name: 'John Doe',
-                data: JSON.stringify(req.body, null, 2)
+                data: req.body
             });
             console.log("=============CALLED API ===============");
             console.log(response.data);
