@@ -52,7 +52,8 @@ app.get('/webhook', async (req, res) => {
           } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'Erreur lors de la récupération des données' });
-          }
+        }
+        console.log("=============END API ===============");
         res.status(200).send(challenge);
     } else {
         res.status(403).end();
