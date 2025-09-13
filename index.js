@@ -71,11 +71,11 @@ app.post('/webhook', async (req, res) => {
     try {
             const response = await axios.post('https://api-whatsapp.advanceditb.com/api/webhook', {
                 name: 'John Doe',
-                data: challenge
+                data: JSON.stringify(req.body, null, 2)
             });
             console.log("=============CALLED API ===============");
-        console.log(response.data);
-        console.log("=============END API ===============");
+            console.log(response.data);
+            console.log("=============END API ===============");
            // res.json(response.data); // retourne les données reçues à ton frontend
           } catch (error) {
             console.error(error.message);
