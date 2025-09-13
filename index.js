@@ -38,7 +38,9 @@ app.get('/', (req, res) => {
 
 app.get('/webhook', async (req, res) => {
     const { 'hub.mode': mode, 'hub.challenge': challenge, 'hub.verify_token': token } = req.query;
+    console.log("=============CALLED API ===============");
     console.log(mode, challenge, token);
+    console.log("============================");
     if (mode === 'subscribe' && token === verifyToken) {
         console.log('WEBHOOK VERIFIED',challenge );
         try {
