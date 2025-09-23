@@ -32,7 +32,7 @@ app.get('/users', (req, res) => {
 
 app.get('/', (req, res) => {
     console.log('BONJOUR JEAN LIONEL NININAHAZWE !');
-    console.log(req.query);
+    console.log("req.query", JSON.stringify(req.query, null, 2));
     res.send('BONJOUR JEAN LIONEL NININAHAZWE !');
 });
 
