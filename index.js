@@ -32,9 +32,7 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    console.log('BONJOUR JEAN LIONEL NININAHAZWE !');
-    console.log("req.query", JSON.stringify(req.query, null, 2));
-    res.send('BONJOUR JEAN LIONEL NININAHAZWE !');
+   res.sendFile(path.join(__dirname, 'public', 'welcome.html'));
 });
 
 app.get('/webhook', async (req, res) => {

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienvenue – Intégration Webhook WhatsApp | Advanced IT And Research Burundi</title>
+  <style>
+    :root{--bg:#0b1220;--card:#111a2b;--text:#e6eefc;--muted:#9fb3d9;--accent:#8b5cf6;--link:#60a5fa;--border:#1f2a44}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0b1220 200px,#0e1626);color:var(--text)}
+    .container{max-width:960px;margin:0 auto;padding:28px 16px}
+    header{padding:10px 0 20px}
+    h1{font-size:28px;margin:6px 0 8px}
+    p{margin:8px 0 14px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+    h2{font-size:18px;margin:0 0 10px;color:#cdd9f6}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code,pre{background:#0b1424;border:1px solid var(--border);border-radius:8px}
+    code{padding:2px 6px}
+    pre{padding:12px;overflow:auto}
+    .pill{display:inline-block;background:#151f34;border:1px solid var(--border);border-radius:999px;padding:4px 10px;color:#cdd9f6;font-size:12px}
+    .endpoint{display:flex;justify-content:space-between;gap:8px;align-items:center;border-top:1px dashed var(--border);padding:10px 0}
+    .endpoint:first-child{border-top:0}
+    .method{font-weight:700;color:#86efac}
+    footer{margin-top:28px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);padding-top:12px}
+    .links a{display:block;margin:6px 0}
+    ul{margin:8px 0 0 18px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="pill">Advanced IT And Research Burundi</span>
+      <h1>Bienvenue – Intégration Webhook WhatsApp</h1>
+      <p>Cette page regroupe les liens utiles et la documentation rapide de votre intégration WhatsApp (Meta WhatsApp Business API).</p>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Liens rapides</h2>
+        <div class="links">
+          <a href="/">Accueil</a>
+          <a href="/privacy-policy">Politique de confidentialité</a>
+          <a href="/terms-of-service">Conditions d’utilisation</a>
+          <a href="/users">Liste des utilisateurs (base de données)</a>
+          <a href="/webhook?hub.mode=subscribe&hub.verify_token=VOTRE_VERIFY_TOKEN&hub.challenge=123456">
+            Vérifier le webhook (GET) – exemple
+          </a>
+        </div>
+        <p style="margin-top:8px;color:#9fb3d9">
+          Remplacez <code>VOTRE_VERIFY_TOKEN</code> par la valeur de votre variable d’environnement <code>VERIFY_TOKEN</code>.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Variables d’environnement</h2>
+        <ul>
+          <li><code>PORT</code> – Port d’écoute du serveur</li>
+          <li><code>VERIFY_TOKEN</code> – Jeton de vérification du webhook (GET)</li>
+          <li><code>ACCESS_TOKEN</code> – Jeton d’accès WhatsApp (si utilisé pour appeler l’API Meta)</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Endpoints</h2>
+        <div class="endpoint">
+          <div><span class="method">GET</span> /</div>
+          <div>Page d’accueil</div>
+        </div>
+        <div class="endpoint">
+          <div><span class="method">GET</span> /privacy-policy</div>
+          <div>Politique de confidentialité (HTML)</div>
+        </div>
+        <div class="endpoint">
+          <div><span class="method">GET</span> /terms-of-service</div>
+          <div>Conditions d’utilisation (HTML)</div>
+        </div>
+        <div class="endpoint">
+          <div><span class="method">GET</span> /webhook</div>
+          <div>Vérification (Meta appelle avec <code>hub.*</code>)</div>
+        </div>
+        <div class="endpoint">
+          <div><span class="method" style="color:#fca5a5">POST</span> /webhook</div>
+          <div>Réception des événements WhatsApp</div>
+        </div>
+        <div class="endpoint">
+          <div><span class="method">GET</span> /users</div>
+          <div>Liste les utilisateurs depuis SQLite</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Exemples</h2>
+        <p><strong>Vérification Webhook (GET)</strong></p>
+        <pre><code>GET /webhook?hub.mode=subscribe&amp;hub.verify_token=VERIFY_TOKEN&amp;hub.challenge=123456</code></pre>
+
+        <p><strong>Test réception (POST via curl)</strong></p>
+        <pre><code>curl -X POST http://localhost:PORT/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"entry":[{"changes":[{"value":{"messages":[{"from":"256700000000","id":"wamid.HBg...","timestamp":"1734480000","text":{"body":"Bonjour"}}]}}]}]}'</code></pre>
+        <p style="color:#9fb3d9">Remplacez <code>PORT</code> et adaptez la charge utile selon vos besoins.</p>
+      </section>
+
+      <section class="card">
+        <h2>Support</h2>
+        <ul>
+          <li><strong>E-mail :</strong> contact.advancedit@gmail.com</li>
+          <li><strong>Téléphone :</strong> +257 79 614 036</li>
+          <li><strong>Adresse :</strong> Bujumbura-Burundi, Rohero Avenue Mwaro No 13</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Advanced IT And Research Burundi — Tous droits réservés.
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>
