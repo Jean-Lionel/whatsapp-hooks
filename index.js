@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const sqlite3 = require('sqlite3').verbose();
 require('dotenv').config();
+const path = require('path');
 const db = require('./config/db');
 
 const app = express()
@@ -85,4 +86,15 @@ app.post('/webhook', async (req, res) => {
  
     
     res.status(200).end();
+});
+
+// Route for Privacy and Policies
+
+// Route for Privacy Policy
+app.get('/privacy-policy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
+});
+// Route conditions de service
+app.get('/terms-of-service', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'terms-of-service.html'));
 });
